@@ -1,0 +1,15 @@
+.Wrapper{
+    width: 300px;
+    background: #eef1f8;
+    .ButtonLink{
+        width: 270px;
+        height: 20px;
+        padding: 15px;
+        font-size: 15pt;
+        font-weight: normal;
+        cursor: pointer;
+        &:hover{
+            background: #d3e1f0;
+        }
+    }
+}
