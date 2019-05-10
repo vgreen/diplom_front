@@ -1,17 +1,24 @@
 import React from 'react';
 import './Menu.scss';
+import {addDays} from "../utils";
 
-class Menu extends React.Component<{}, {}> {
+type TState ={
+    startPeriod:Date,
+    endPeriod:Date,
+}
+
+
+class Menu extends React.Component<{}, TState> {
+
     public state = {
-      now: ""
-    } 
+        startPeriod: new Date(),
+        endPeriod: addDays(new Date(), 3),
+    };
 
     render(){
         return(
             <div className="Wrapper">
-                <div className="ButtonLink">Статистика по возрастам</div>
-                <div className="ButtonLink">Статистика по округам</div>
-                <div className="ButtonLink">Статистика по полу</div>
+
             </div>
         );
     }
