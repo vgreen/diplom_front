@@ -1,17 +1,19 @@
 import React from 'react';
-import Menu from './main_menu';
-import TopMenu from "./top_menu";
+//import Menu from './MainMenu';
+import TopMenu from "./TopMenu";
+import PageHolder from "./PageHolder";
 
 class Home extends React.Component<{}, {}> {
     public state = {
-      now: ""
+      currentPage: 0
     };
 
     render(){
+        const {currentPage} = this.state;
         return(
             <>
-                <Menu/>
                 <TopMenu/>
+                <PageHolder currentPage={currentPage}/>
             </>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Menu.scss';
+import './MainMenu.scss';
 import {addDays} from "../utils";
 
 type TState ={
