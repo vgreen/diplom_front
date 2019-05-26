@@ -17,7 +17,7 @@ class PageHolder extends React.Component< TProps,{}> {
     static getPages(){
         return[
             {
-                component:<AgeStatistic/>
+                component: <AgeStatistic date_start={''} date_end={''} department={''}/>
             },
             {
                 component:<DiagnoseStatistic/>
