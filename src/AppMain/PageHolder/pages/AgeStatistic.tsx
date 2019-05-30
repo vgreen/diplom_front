@@ -62,9 +62,9 @@ class AgeStatistic extends React.Component<TProps, TState> {
             method: 'post',
             url: 'http://localhost:3001/ageStatistic/',
             data: {
-                date_start: '123',
-                date_end: '34234',
-                dep: '1',
+                dateStart: '2017-01-01',
+                dateEnd: '2018-01-01',
+                dep: '1'
             }
         })
             .then((response) => {
