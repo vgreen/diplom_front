@@ -11,7 +11,7 @@ class TopMenu extends React.Component<TProps,{}> {
 
 
     render(){
-        const {setCurrentPage} = this.props
+        const { setCurrentPage } = this.props;
         return(
             <div className="WrapperTop">
                 <div className="ButtonLink" onClick={() => setCurrentPage(0)}>Статистика по возрастам</div>

@@ -1,2 +1,3 @@
 export { addDays } from './defaultFunctions'
-export { periods } from './Dictionaries'
+export { departments } from './Dictionaries'
+export { csvStringMaker } from './csvMaker'

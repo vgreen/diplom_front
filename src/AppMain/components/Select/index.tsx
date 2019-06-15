@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './Select.scss'
 
 
@@ -11,19 +11,19 @@ type TProps = {
     defaultString:string,
     items:TItem[],
     title:string,
+    onChange(e: any): any,
 };
-type TState = {};
 
-class Select extends Component<TProps, TState> {
+class Select extends Component<TProps, {}> {
 
 
     render() {
-        const {items, defaultString, title} = this.props;
+        const { items, defaultString, title, onChange } = this.props;
 
         return (
             <div className='Select'>
                 <h2 className="Title">{title}</h2>
-                <select defaultValue='255'>
+                <select defaultValue='255' onChange={onChange}>
                     <option value='255' disabled>{defaultString}</option>
                     {
                         items.map((item,i) => {

@@ -1,13 +1,14 @@
 import React from 'react';
-import TopMenu from "../TopMenu";
-import PageHolder from "../PageHolder";
-import Menu from "../MainMenu";
+import TopMenu from "./TopMenu";
+import PageHolder from "./PageHolder";
 import './Home.scss'
 
 class Home extends React.Component<{}, {}> {
     public state = {
-        currentPage: 0
+        currentPage: 0,
+
     };
+
 
     setCurrentPage = (num:number) => {
         this.setState({
@@ -15,13 +16,14 @@ class Home extends React.Component<{}, {}> {
         })
     };
 
+
     render(){
         const {currentPage} = this.state;
         return(
             <div className="Home">
                 <TopMenu setCurrentPage={this.setCurrentPage}/>
                 <div className="content">
-                    <Menu/>
+
                     <PageHolder currentPage={currentPage}/>
                 </div>
             </div>

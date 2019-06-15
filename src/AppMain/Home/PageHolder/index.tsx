@@ -1,10 +1,10 @@
 import React from 'react';
 import './PageHolder.scss';
 import "react-datepicker/dist/react-datepicker.css";
-import {AgeStatistic, DiagnoseStatistic, RegionStatistic, SexStatistic} from "./pages";
+import { AgeStatistic, DiagnoseStatistic, RegionStatistic, SexStatistic } from "./pages";
 
 type TProps = {
-    currentPage:number
+    currentPage: number,
 }
 
 
@@ -14,10 +14,12 @@ class PageHolder extends React.Component< TProps,{}> {
         currentPage: 0,
     };
 
-    static getPages(){
+    public state = {};
+
+    getPages = () => {
         return[
             {
-                component: <AgeStatistic date_start={''} date_end={''} department={''}/>
+                component: <AgeStatistic/>
             },
             {
                 component:<DiagnoseStatistic/>
@@ -29,11 +31,21 @@ class PageHolder extends React.Component< TProps,{}> {
                 component:<SexStatistic/>
             },
         ]
-    }
+    };
 
     renderPage = (currentPageNumber:number) => {
-        const pages = PageHolder.getPages();
+        const pages = this.getPages();
         return pages[currentPageNumber].component
+    };
+
+    setData = (dateStart: string, dateEnd: string, dep: string) => {
+        this.setState({
+            data: {
+                dateS: dateStart,
+                dateE: dateEnd,
+                dep: dep
+            }
+        })
     };
 
     render(){
