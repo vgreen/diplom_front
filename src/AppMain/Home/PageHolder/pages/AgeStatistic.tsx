@@ -1,12 +1,11 @@
-import React from 'react';
-import axios from 'axios'
+import React                               from 'react';
+import axios                               from 'axios'
 import './styles.scss'
-import { Table } from "../../../components/Table";
-import { csvStringMaker } from "../../../utils";
-import { ReactComponent as Download } from '../assets/download.svg'
-import { Diagramm } from "../../../components/Diagramm";
-import Menu from "../../../components/Menu";
-import { dateTransformer } from "../../../utils/defaultFunctions";
+import { Table }                           from "../../../components/Table";
+import { csvStringMaker, dateTransformer } from "../../../utils";
+import { ReactComponent as Download }      from '../assets/download.svg'
+import { Diagramm }                        from "../../../components/Diagramm";
+import Menu                                from "../../../components/Menu";
 
 export type TState = {
     data: Column[],
@@ -116,14 +115,14 @@ class AgeStatistic extends React.Component<{}, TState> {
 
     dateStartChange = (date: string) => {
         this.setState({
-            dateStart: dateTransformer(date)
+            dateStart: date !== '' ? dateTransformer(date) : '2014-01-01'
         });
 
     };
 
     dateEndChange = (date: string) => {
         this.setState({
-            dateEnd: dateTransformer(date)
+            dateEnd: date !== '' ? dateTransformer(date) : '2040-01-01'
         })
     };
 

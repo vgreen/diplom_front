@@ -1,0 +1,26 @@
+.Row {
+  width: 100%;
+  border-bottom: 1px solid #d3e1f0;
+  height: 30px;
+
+  .LeftLabel {
+    text-align: center;
+    background: lightskyblue;
+  }
+
+  .Cell {
+    text-align: center;
+    background: aliceblue;
+    width: 90px;
+    border-left: 1px solid #d3e1f0;
+  }
+}
+
+.Header {
+  font-weight: bold;
+
+  th {
+    height: 35px;
+    background: #84e2ff;
+  }
+}

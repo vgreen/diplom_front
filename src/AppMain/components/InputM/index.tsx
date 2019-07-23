@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './InputM.scss'
-import InputMask from "react-input-mask";
+import InputMask            from "react-input-mask";
 
 type TProps = {
     title: string,
@@ -39,9 +39,11 @@ class InputM extends Component<TProps, TState> {
         const { onBlur } = this.props,
             { checked } = this.state,
             str = e.target.value;
-        this.setFlag(str);
-        console.log(str + (new Date()).getFullYear());
-        if (checked) onBlur(str)
+        if (str !== '') {
+            this.setFlag(str);
+            console.log(str + (new Date()).getFullYear());
+            if (checked) onBlur(str)
+        }
     };
 
     render() {
