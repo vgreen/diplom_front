@@ -1,0 +1,13 @@
+.Select{
+  display: flex;
+  flex-direction: column;
+  .Title{
+    font-size: 10pt;
+    margin: 3px 0;
+  }
+  select{
+    font-size: 12pt;
+    width: 200px;
+  }
+}
+
