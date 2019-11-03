@@ -17,7 +17,7 @@ export type TState = {
 type Column = {
     department: string,
     under18: string,
-    age18_21: string,
+    age19: string,
     age22_24: string,
     age25_29: string,
     age30_34: string,
@@ -27,16 +27,14 @@ type Column = {
     age50_54: string,
     age55_59: string,
     age60_64: string,
-    age65_69: string,
-    age70_74: string,
     age75: string,
 }
 
 const headers = [
     'Департамент',
     'до 18',
-    '18 - 21',
-    '22 - 24',
+    '18 - 19',
+    '20 - 24',
     '25 - 29',
     '30 - 34',
     '35 - 39',
@@ -44,10 +42,8 @@ const headers = [
     '45 - 49',
     '50 - 54',
     '55 - 59',
-    '60 - 64',
-    '65 - 69',
-    '70 - 74',
-    '75+',
+    '60 +',
+    '70 +',
 ];
 
 class AgeStatistic extends React.Component<{}, TState> {
@@ -71,8 +67,8 @@ class AgeStatistic extends React.Component<{}, TState> {
             return {
                 department: item['department'],
                 under18: item['under18'],
-                age18_21: item['18-21'],
-                age22_24: item['22-24'],
+                age19: item['19'],
+                age22_24: item['20-24'],
                 age25_29: item['25-29'],
                 age30_34: item['30-34'],
                 age35_39: item['35-39'],
@@ -80,10 +76,8 @@ class AgeStatistic extends React.Component<{}, TState> {
                 age45_49: item['45-49'],
                 age50_54: item['50-54'],
                 age55_59: item['55-59'],
-                age60_64: item['60-64'],
-                age65_69: item['65-69'],
-                age70_74: item['70-74'],
-                age75: item['75+'],
+                age60_64: item['60+'],
+                age75: item['70+'],
             }
         });
     };

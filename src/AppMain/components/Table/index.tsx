@@ -6,7 +6,24 @@ type TProps = {
     headers?: string[],
 }
 
+type TCounter = {
+    [key:string]:number
+}
+
 export const Table = (props: TProps) => {
+
+    let counter:TCounter = {};
+    if(props.data[0]){
+
+        Object.keys(props.data[0]).forEach((key) => counter[key] = 0);
+        console.log(counter);
+        props.data.forEach((item) => {
+            Object.keys(item).forEach((key) => {
+                if(key !== 'department') counter[key] += +item[key]
+            })
+        });
+        console.log(counter);
+    }
     return (
         <table>
             <tbody>
@@ -32,6 +49,16 @@ export const Table = (props: TProps) => {
                     );
                 })
             }
+            <tr className="Row">
+                {
+                    Object.keys(counter).map((item, i) => {
+                        if(item === 'department') return <td className="LeftLabel"> Всего : </td>;
+                        else {
+                            return <td className="LeftLabel"> {counter[item]}</td>
+                        }
+                    })
+                }
+            </tr>
             </tbody>
         </table>
     );
