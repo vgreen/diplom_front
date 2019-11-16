@@ -33,12 +33,13 @@ class Menu extends React.Component<TProps, {}> {
                         defaultString='Выберите отделение'
                         onChange={depChange}
                     />
+                    {false&&
                     <Select
                         title='Код диагноза'
                         items={departments}
                         defaultString='Выберите код диагноза'
                         onChange={this.f}
-                    />
+                    />}
                 </div>
                 <button className="submit" onClick={sendReq}>Запустить выборку</button>
             </div>
