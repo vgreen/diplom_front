@@ -18,6 +18,7 @@ class TopMenu extends React.Component<TProps,{}> {
                 <div className="ButtonLink" onClick={() => setCurrentPage(2)}>Статистика по регионам</div>
                 <div className="ButtonLink" onClick={() => setCurrentPage(3)}>Статистика по полу</div>
                 <div className="ButtonLink" onClick={() => setCurrentPage(1)}>Статистика по диагнозам</div>
+                <div className="ButtonLink" onClick={() => setCurrentPage(4)}>Статистика по семейному положению</div>
             </div>
         );
     }
