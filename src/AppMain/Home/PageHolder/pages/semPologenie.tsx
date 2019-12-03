@@ -107,7 +107,7 @@ class SemPologStatistic extends React.Component<{}, TState> {
                 />
                 <div className="LabelContainer">
                     <div className="header">
-                        <h2 className="Label">Статистика по возрастам</h2>
+                        <h2 className="Label">Статистика по семейному положению</h2>
                     </div>
                     <a className={'LinkCsv'} href={csvStringMaker(data)} download="export.csv">Загрузить <Download/>
                     </a>
@@ -119,9 +119,9 @@ class SemPologStatistic extends React.Component<{}, TState> {
                 />
                 : <p>Загрузка.....</p>}
                 <div className="header">
-                    <h2 className="Label">Статистическая гистограмма по возрастам</h2>
+                    <h2 className="Label">Статистическая гистограмма по семейному положению</h2>
                 </div>
-                <Diagramm data={data} dataKey={'department'}/>
+                <Diagramm dataMax={4000} data={data} dataKey={'department'}/>
             </div>
         );
     }

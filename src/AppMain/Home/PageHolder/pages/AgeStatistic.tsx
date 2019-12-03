@@ -155,7 +155,7 @@ class AgeStatistic extends React.Component<{}, TState> {
                 <div className="header">
                     <h2 className="Label">Статистическая гистограмма по возрастам</h2>
                 </div>
-                <Diagramm data={data} dataKey={'department'}/>
+                <Diagramm data={data} dataKey={'department'} dataMax={1500}/>
             </div>
         );
     }

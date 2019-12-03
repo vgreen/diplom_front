@@ -90,12 +90,18 @@ class SexStatistic extends React.Component<{}, {}> {
                 </div>
                 {data ?
                 <Table
+                    left_names={
+                        {
+                            '1':'Мужской',
+                            '0': 'Женский'
+                        }
+                    }
                     data={data}
                 /> : 'Загрузка...'}
                 <div className="header">
                     <h2 className="Label">Статистическая диаграмма по полу</h2>
                 </div>
-                <Diagramm data={data} dataKey={'region_code'}/>
+                <Diagramm data={data} dataKey={'Gender'}/>
             </div>
         );
     }

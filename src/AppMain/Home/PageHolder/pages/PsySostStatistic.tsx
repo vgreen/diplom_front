@@ -7,44 +7,82 @@ import { ReactComponent as Download } from '../assets/download.svg'
 import { Diagramm }                   from "../../../components/Diagramm";
 import { dateTransformer }            from "../../../utils";
 import Menu                           from "../../../components/Menu";
+import {AreaDiagramm} from "../../../components/AreaDiagramm";
+import StatContainer from "../../../components/statContainer";
 
 
 type TState = {
-    data: any[],
+    data: {
+        [key:string]: any
+    },
     dateStart: string,
     dateEnd: string,
     dep: string,
 }
 
 const headers = [
-    'Код региона',
-    'Количество пациентов',
+    'Шкала',
+    '1 отделение',
+    '2 отделение',
+    '3 отделение',
+    '4 отделение',
+    '5 отделение',
+    '6 отделение',
+    '7 отделение',
+    '8 отделение',
+    '9 отделение',
+    '10 отделение',
+    '1 дн ст',
+    '2 дн ст',
 ];
 
-class RegionStatistic extends React.Component<{}, TState> {
+const queryTypes = [
+    'SB_in',
+    'SB_out',
+    'ST_in',
+    'ST_out',
+    'SG_in',
+    'SG_out',
+    'LT_in',
+    'LT_out'
+];
+
+class PsySostStatistic extends React.Component<{}, TState> {
     public state: TState = {
-        data: [],
+        data: {
+        },
         dateStart: '2014-01-01',
         dateEnd: '2018-01-01',
         dep: '',
     };
 
-    sendReq = (): void => {
+    sendReq = () => {
+        queryTypes.forEach(item => {
+            this.sendReqForTable(item)
+        })
+    }
+
+    sendReqForTable = (type: string): void => {
         const { dateStart, dateEnd, dep } = this.state;
         axios({
             method: 'post',
-            url: 'http://localhost:3001/regionStatistic/',
+            url: 'http://localhost:3001/shkaliStatistic/',
             data: {
                 dateStart: dateStart,
                 dateEnd: dateEnd,
-                dep: dep
+                dep: dep,
+                type: type
             }
         })
             .then((response) => {
                 console.log(response.data);
-                this.setState({
-                    data: response.data
-                });
+                // @ts-ignore
+                this.setState( ({ data }) =>({
+                    data:  {
+                        ...data,
+                        [type]:response.data
+                    }
+                }));
                 console.log(this.state.data)
             })
             .catch(function (error) {
@@ -86,36 +124,31 @@ class RegionStatistic extends React.Component<{}, TState> {
 
         const { data, dateStart, dateEnd } = this.state;
         return (
-            <div className="RegStatistic">
+            <div className="PsySostStatistic">
                 <Menu dateStartChange={this.dateStartChange}
                       dateEndChange={this.dateEndChange}
                       sendReq={this.sendReq}
                       depChange={this.depChange}
                       checkDate={this.checkDate(dateStart, dateEnd)}
                 />
-                <div className="LabelContainer">
-                    <div className="header">
-                        <h2 className="Label">Статистика по регионам</h2>
-                    </div>
-                    <a className={'LinkCsv'} href={csvStringMaker(data)} download="export.csv">Загрузить <Download/>
-                    </a>
-                </div>{
-                data.length > 0 ?
-                <Table
-                    data={data}
-                    headers={headers}
-                />
-            :
-            <p>Загрузка .....</p>}
-                <div className="header">
-                    <h2 className="Label">Статистическая диаграмма по регионам</h2>
-                </div>
-                <Diagramm data={data.map((item, key )=> key !== 71 && key !== 75 && item)} dataKey={'region_code'} dataMax={100}/>
+                <StatContainer data_in={data['SB_in']} data_out={data['SB_out']} headers={headers} name={'Шкала Бека'}/>
+                <br/>
+                <StatContainer data_in={data['ST_in']} data_out={data['ST_out']} headers={headers} name={'Ситуационная тревога'}/>
+                <br/>
+                <StatContainer data_in={data['SG_in']} data_out={data['SG_out']} headers={headers} name={'Шкала Гамильтона'}/>
+                <br/>
+                <StatContainer data_in={data['LT_in']} data_out={data['LT_out']} headers={headers} name={'Личностная тревога'}/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </div>
         );
     }
 
 }
 
-export default RegionStatistic;
+export default PsySostStatistic;
 

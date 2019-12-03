@@ -24,7 +24,7 @@ const formatDataToCsvString = function (data: any[]): string {
 
 
 export const csvStringMaker = (data: any[], headers?: string[]) => {
-    if (data[0]) {
+    if (data && data[0]) {
         let blob = new Blob([processRow(headers || Object.keys(data[0])) + formatDataToCsvString(data)], {type: 'text/csv;charset=utf-8;'});
         return URL.createObjectURL(blob);
     }

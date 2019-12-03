@@ -2,6 +2,7 @@ import React from 'react';
 import './PageHolder.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import { AgeStatistic, DiagnoseStatistic, RegionStatistic, SexStatistic, SemPologStatistic } from "./pages";
+import PsySostStatistic from "./pages/PsySostStatistic";
 
 type TProps = {
     currentPage: number,
@@ -22,7 +23,7 @@ class PageHolder extends React.Component< TProps,{}> {
                 component: <AgeStatistic/>
             },
             {
-                component:<DiagnoseStatistic/>
+                component:<PsySostStatistic/>
             },
             {
                 component:<RegionStatistic/>

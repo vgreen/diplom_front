@@ -1,9 +1,13 @@
 import React from 'react';
 import './Table.scss'
 
-type TProps = {
+interface TProps {
     data: any[],
     headers?: string[],
+    left_names?: {
+        // @ts-ignore
+        [key:(string | number)]:string
+    }
 }
 
 type TCounter = {
@@ -43,7 +47,10 @@ export const Table = (props: TProps) => {
                         [first, ...rest] = values;
                     return (
                         <tr className="Row" key={i}>
-                            <td className="LeftLabel" key={i}> {first}</td>
+                            <td className="LeftLabel" key={i}> {
+                                //@ts-ignore
+                                !!props.left_names ? props.left_names[first] : first
+                            }</td>
                             {rest.map((field, key) => <td className="Cell" key={key}> {field}</td>)}
                         </tr>
                     );
@@ -54,7 +61,7 @@ export const Table = (props: TProps) => {
                     Object.keys(counter).map((item, i) => {
                         if(item === 'department') return <td className="LeftLabel"> Всего : </td>;
                         else {
-                            return <td className="LeftLabel"> {counter[item]}</td>
+                            return <td key={i} className="LeftLabel"> {counter[item]}</td>
                         }
                     })
                 }
