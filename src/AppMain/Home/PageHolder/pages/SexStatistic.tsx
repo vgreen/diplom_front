@@ -73,6 +73,14 @@ class SexStatistic extends React.Component<{}, {}> {
     render() {
 
         const { data, dateStart, dateEnd } = this.state;
+        //todo VINESTY
+        const new_data = data.map((item:any) => {
+            const {Gender, ...rest} = item
+            return {
+                ...{Gender: !!Gender ? 'Мужской' : 'Женский'},
+                ...rest
+            }
+        })
         return (
             <div className="RegStatistic">
                 <Menu dateStartChange={this.dateStartChange}
@@ -101,7 +109,7 @@ class SexStatistic extends React.Component<{}, {}> {
                 <div className="header">
                     <h2 className="Label">Статистическая диаграмма по полу</h2>
                 </div>
-                <Diagramm data={data} dataKey={'Gender'}/>
+                <Diagramm data={new_data} dataKey={'Gender'}/>
             </div>
         );
     }

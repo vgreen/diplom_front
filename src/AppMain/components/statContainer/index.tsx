@@ -62,7 +62,7 @@ const StatContainer: FunctionComponent<Props> = ({data_in, data_out, headers, na
           <div className="header">
               <h2 className="Label">Статистическая диаграмма по {name}</h2>
           </div>
-          <AreaDiagramm data={noValueOption(data_in)} data_2={noValueOption(data_out)} dataKey={'Value'} dataMax={300}/>
+          <AreaDiagramm data={noValueOption(data_in)} data_2={noValueOption(data_out)} dataKey={'Value'} dataMax={400} x_label={'Показатель шкалы'} y_label={'Количество человек'}/>
       </div>
   );
 };

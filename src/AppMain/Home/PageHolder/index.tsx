@@ -33,7 +33,11 @@ class PageHolder extends React.Component< TProps,{}> {
             },
             {
                 component: <SemPologStatistic/>
-            }
+            },
+            {
+                component: <DiagnoseStatistic/>
+            },
+
         ]
     };
 

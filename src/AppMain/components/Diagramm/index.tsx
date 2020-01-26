@@ -6,7 +6,9 @@ type TProps = {
     data: any[],
     data_2?: any[],
     dataKey: string
-    dataMax?: number | string
+    dataMax?: number | string,
+    x_label?: string,
+    y_label?: string
 }
 
 function getRandomColor(i: number) {
@@ -39,7 +41,8 @@ function getRandomColor(i: number) {
 
 
 export const Diagramm = (props: TProps) => {
-    const { data, dataKey, dataMax, data_2 } = props;
+    const { data, dataKey, dataMax, data_2, x_label, y_label } = props;
+
     return (
         <div className="Diagramm">
             <BarChart
@@ -51,23 +54,28 @@ export const Diagramm = (props: TProps) => {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3"/>
-                <XAxis dataKey={dataKey}/>
-                <YAxis domain={[0, dataMax ? dataMax : 2000]}/>
+                <XAxis dataKey={dataKey} label={x_label ? x_label : ''}/>
+                <YAxis domain={[0, dataMax ? dataMax : 2000]} label={{value:y_label ? y_label : 'Количество человек' , angle: -90, position: 'insideLeft'}}/>
                 <Tooltip/>
                 <Legend/>
-                {data && data[0] && data_2 && data_2[0] &&
+                {data && data[0] &&
                 // eslint-disable-next-line array-callback-return
                     Object.keys(data[0]).map((item, i) => {
-                        if (item !== dataKey) return <Bar dataKey={item} key={i} fill={getRandomColor(i)}/>;
+                        return item !== dataKey ? <Bar dataKey={item} key={i} fill={getRandomColor(i)} /> : null;
                     })
                 }
                 {
                     data_2 && data_2[0] &&
                     Object.keys(data_2[0]).map((item, i) => {
-                        if (item !== dataKey) return <Bar dataKey={item} key={i} fill={getRandomColor(i)}/>;
+                        return item !== dataKey ? <Bar dataKey={item} key={i} fill={getRandomColor(i+1)} /> : null;
                     })
                 }
             </BarChart>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     );
 };

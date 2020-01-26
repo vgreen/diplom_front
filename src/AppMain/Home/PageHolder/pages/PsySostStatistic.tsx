@@ -1,13 +1,8 @@
-import React                          from 'react';
-import axios                          from 'axios'
+import React from 'react';
+import axios from 'axios'
 import './styles.scss'
-import { Table }                      from "../../../components/Table";
-import { csvStringMaker }             from "../../../utils/csvMaker";
-import { ReactComponent as Download } from '../assets/download.svg'
-import { Diagramm }                   from "../../../components/Diagramm";
-import { dateTransformer }            from "../../../utils";
-import Menu                           from "../../../components/Menu";
-import {AreaDiagramm} from "../../../components/AreaDiagramm";
+import {dateTransformer} from "../../../utils";
+import Menu from "../../../components/Menu";
 import StatContainer from "../../../components/statContainer";
 
 
@@ -18,6 +13,7 @@ type TState = {
     dateStart: string,
     dateEnd: string,
     dep: string,
+    loading:boolean
 }
 
 const headers = [
@@ -52,8 +48,9 @@ class PsySostStatistic extends React.Component<{}, TState> {
         data: {
         },
         dateStart: '2014-01-01',
-        dateEnd: '2018-01-01',
+        dateEnd: '2025-01-01',
         dep: '',
+        loading: false
     };
 
     sendReq = () => {
@@ -64,6 +61,9 @@ class PsySostStatistic extends React.Component<{}, TState> {
 
     sendReqForTable = (type: string): void => {
         const { dateStart, dateEnd, dep } = this.state;
+        this.setState({
+            loading:true
+        })
         axios({
             method: 'post',
             url: 'http://localhost:3001/shkaliStatistic/',
@@ -81,7 +81,8 @@ class PsySostStatistic extends React.Component<{}, TState> {
                     data:  {
                         ...data,
                         [type]:response.data
-                    }
+                    },
+                    loading:false
                 }));
                 console.log(this.state.data)
             })
@@ -122,7 +123,7 @@ class PsySostStatistic extends React.Component<{}, TState> {
 
     render() {
 
-        const { data, dateStart, dateEnd } = this.state;
+        const { data, dateStart, dateEnd, loading } = this.state;
         return (
             <div className="PsySostStatistic">
                 <Menu dateStartChange={this.dateStartChange}
@@ -131,6 +132,9 @@ class PsySostStatistic extends React.Component<{}, TState> {
                       depChange={this.depChange}
                       checkDate={this.checkDate(dateStart, dateEnd)}
                 />
+                {
+                    loading && <div style={{width:'100%', height:'50px', textAlign:'center', paddingTop:'20px'}}>{'Загрузка данных .....'}</div>
+                }
                 <StatContainer data_in={data['SB_in']} data_out={data['SB_out']} headers={headers} name={'Шкала Бека'}/>
                 <br/>
                 <StatContainer data_in={data['ST_in']} data_out={data['ST_out']} headers={headers} name={'Ситуационная тревога'}/>

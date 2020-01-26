@@ -59,7 +59,7 @@ export const Table = (props: TProps) => {
             <tr className="Row">
                 {
                     Object.keys(counter).map((item, i) => {
-                        if(item === 'department') return <td className="LeftLabel"> Всего : </td>;
+                        if(item === 'department') return <td key={i} className="LeftLabel"> Всего : </td>;
                         else {
                             return <td key={i} className="LeftLabel"> {counter[item]}</td>
                         }
