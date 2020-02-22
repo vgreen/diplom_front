@@ -99,19 +99,21 @@ class PsySostStatistic extends React.Component<{}, TState> {
 
     dateStartChange = (date: string) => {
         this.setState({
-            dateStart: dateTransformer(date)
+            dateStart: date !== '' ? dateTransformer(date) : '2010-01-01'
         });
 
     };
 
     dateEndChange = (date: string) => {
         this.setState({
-            dateEnd: dateTransformer(date)
+            dateEnd: date !== '' ? dateTransformer(date) : '2040-01-01'
         })
     };
 
     checkDate(start: string, end: string): boolean {
-        return Number.parseInt(start.split('-').join('')) <= Number.parseInt(end.split('-').join(''))
+        if(start.replace(/\D/,'') !== '' && end.replace('-', '') !== '')
+            return Number.parseInt(start.split('-').join('')) <= Number.parseInt(end.split('-').join(''))
+        else return true
     }
 
     depChange = (e: any) => {

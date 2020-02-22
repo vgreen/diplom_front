@@ -121,7 +121,9 @@ class AgeStatistic extends React.Component<{}, TState> {
     };
 
     checkDate(start: string, end: string): boolean {
-        return Number.parseInt(start.split('-').join('')) <= Number.parseInt(end.split('-').join(''))
+        if(start.replace(/\D/,'') !== '' && end.replace('-', '') !== '')
+            return Number.parseInt(start.split('-').join('')) <= Number.parseInt(end.split('-').join(''))
+        else return true
     }
 
     depChange = (e: any) => {
