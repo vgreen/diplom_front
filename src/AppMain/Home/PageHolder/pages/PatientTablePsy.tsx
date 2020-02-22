@@ -10,8 +10,8 @@ import {TState} from "./semPologenie";
 class PatientTablePsy extends React.Component<{}, {}> {
     state: TState = {
         data: [],
-        dateStart: '2014-01-01',
-        dateEnd: '2018-01-01',
+        dateStart: '2018-01-31',
+        dateEnd: '2020-01-01',
         dep: '',
     };
 
@@ -45,14 +45,14 @@ class PatientTablePsy extends React.Component<{}, {}> {
 
     dateStartChange = (date: string) => {
         this.setState({
-            dateStart: date !== '' ? dateTransformer(date) : '2018-01-01'
+            dateStart: date !== '' ? dateTransformer(date) : '2018-01-31'
         });
 
     };
 
     dateEndChange = (date: string) => {
         this.setState({
-            dateEnd: date !== '' ? dateTransformer(date) : '2019-01-01'
+            dateEnd: date !== '' ? dateTransformer(date) : '2020-01-01'
         })
     };
 
